@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "boxclaw-downloads.v1",
+  "product": "BoxClaw",
+  "releaseVersion": "0.1.2",
+  "openclawVersion": null,
+  "nodeVersion": "22.22.1",
+  "metadataStatus": "seed",
+  "createdAt": null,
+  "downloads": [
+    {
+      "id": "windows-x64",
+      "label": "Windows x64 portable",
+      "fileName": "BoxClaw-0.1.2-windows-x64-portable.zip",
+      "url": "https://dl.aihub.bid/boxclaw/latest/BoxClaw-0.1.2-windows-x64-portable.zip",
+      "size": null,
+      "sha256": null
+    },
+    {
+      "id": "macos-arm64",
+      "label": "macOS ARM portable",
+      "fileName": "BoxClaw-0.1.2-macos-arm64-portable.zip",
+      "url": "https://dl.aihub.bid/boxclaw/latest/BoxClaw-0.1.2-macos-arm64-portable.zip",
+      "size": null,
+      "sha256": null
+    },
+    {
+      "id": "macos-intel",
+      "label": "macOS Intel portable",
+      "fileName": "BoxClaw-0.1.2-macos-intel-portable.zip",
+      "url": "https://dl.aihub.bid/boxclaw/latest/BoxClaw-0.1.2-macos-intel-portable.zip",
+      "size": null,
+      "sha256": null
+    }
+  ]
+}

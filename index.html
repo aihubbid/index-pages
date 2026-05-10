@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+  <meta name="description" content="AIHub.bid BoxClaw is a portable AI control center for chat platforms, model channels and offline productivity skills.">
+  <title>AIHub.bid - BoxClaw</title>
+  <link rel="shortcut icon" href="images/favicon.ico">
+  <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+  <link rel="stylesheet" href="css/materialdesignicons.min.css" type="text/css">
+  <link rel="stylesheet" href="css/aihub.css" type="text/css">
+</head>
+<body data-page="home">
+  <nav class="navbar navbar-expand-lg fixed-top navbar-white navbar-custom sticky" id="navbar">
+    <div class="container">
+      <a class="navbar-brand text-uppercase fw-bold d-flex align-items-center gap-2" href="index.html" aria-label="AIHub.bid">
+        <span class="brand-mark" aria-hidden="true">A</span>
+        <span>AIHub.bid</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="mdi mdi-menu"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mx-auto" id="navbar-navlist">
+          <li class="nav-item"><a class="nav-link active" href="#home" data-i18n="nav.home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#platforms" data-i18n="nav.platforms">Platforms</a></li>
+          <li class="nav-item"><a class="nav-link" href="#models" data-i18n="nav.models">Models</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills" data-i18n="nav.skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="download.html" data-i18n="nav.download">Download</a></li>
+        </ul>
+        <div class="d-flex align-items-center gap-3">
+          <select id="language-select" class="form-select form-select-sm language-select" aria-label="Language">
+            <option value="en">English</option>
+            <option value="zh-CN">简体中文</option>
+            <option value="ja">日本語</option>
+            <option value="ko">한국어</option>
+            <option value="hi-IN">हिन्दी</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="section home aihub-hero" id="home">
+      <div class="container">
+        <div class="row align-items-center gx-4 gy-5">
+          <div class="col-lg-5">
+            <div class="home-heading">
+              <h6 class="text-uppercase text-muted" data-i18n="home.eyebrow">AIHub.bid presents</h6>
+              <h1 class="lh-sm" data-i18n="home.title">BoxClaw</h1>
+              <p class="text-muted fs-18 mt-4" data-i18n="home.lede">A portable AI control center for chat platforms, model channels and offline productivity skills.</p>
+            </div>
+            <div class="home-btn d-grid d-sm-block gap-3">
+              <a class="btn btn-primary rounded-pill me-sm-3" href="download.html">
+                <span class="avatar-xs"><span class="avatar-title rounded-circle btn-icon"><i class="mdi mdi-download"></i></span></span>
+                <strong data-i18n="home.download">Download BoxClaw</strong>
+              </a>
+              <a class="btn btn-outline-primary rounded-pill" href="#platforms" data-i18n="home.explore">Explore features</a>
+            </div>
+          </div>
+          <div class="col-lg-7">
+            <div class="scaffold-visual ms-lg-4">
+              <img class="img-fluid scaffold-hero-img" src="images/home.png" alt="BoxClaw chat workflow illustration">
+              <div class="control-preview shadow-sm">
+                <div class="preview-topbar"><span></span><span></span><span></span><strong>BoxClaw</strong></div>
+                <div class="preview-body">
+                  <div class="preview-pill active">DeepSeek</div>
+                  <div class="preview-pill">QQ</div>
+                  <div class="preview-pill">Telegram</div>
+                  <div class="preview-pill">PDF</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section features features-bg" id="platforms">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="text-center mb-5">
+              <h6 class="text-uppercase text-primary fw-semibold" data-i18n="home.platformsEyebrow">Chat platform coverage</h6>
+              <h2 class="heading" data-i18n="home.platformsTitle">Connect where teams already work.</h2>
+            </div>
+          </div>
+        </div>
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <div class="card features-card aihub-card h-100">
+              <div class="card-body text-start">
+                <div class="avatar-md mb-4"><div class="avatar-title bg-primary rounded-circle"><i class="mdi mdi-message-processing-outline"></i></div></div>
+                <h5 data-i18n="home.platformsReadyTitle">Supported now</h5>
+                <p class="text-muted mb-0" data-i18n="home.platformsReadyText">QQ, Feishu, WeChat, Telegram, Discord, WhatsApp and Slack are available for daily workflows.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="card features-card aihub-card h-100">
+              <div class="card-body text-start">
+                <div class="avatar-md mb-4"><div class="avatar-title bg-primary rounded-circle"><i class="mdi mdi-office-building-outline"></i></div></div>
+                <h5 data-i18n="home.platformsSoonTitle">Coming soon</h5>
+                <p class="text-muted mb-0" data-i18n="home.platformsSoonText">WeCom and DingTalk support are planned next for enterprise communication scenarios.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="models">
+      <div class="container">
+        <div class="row align-items-center gx-4 gy-5">
+          <div class="col-lg-5">
+            <h6 class="text-uppercase text-primary fw-semibold" data-i18n="home.modelsEyebrow">Model channels</h6>
+            <h2 class="heading" data-i18n="home.modelsTitle">Multiple providers, one configuration flow.</h2>
+          </div>
+          <div class="col-lg-7">
+            <div class="tag-cloud" aria-label="AI model providers">
+              <span>DeepSeek</span><span>Kimi</span><span data-i18n="provider.qwen">Tongyi Qianwen</span><span data-i18n="provider.zhipu">Zhipu</span>
+              <span>MiniMax</span><span data-i18n="provider.doubao">Doubao</span><span data-i18n="provider.qianfan">Baidu Qianfan</span><span>Xiaomi Mimo</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section features-bg" id="skills">
+      <div class="container">
+        <div class="row align-items-center gx-4 gy-5">
+          <div class="col-lg-5">
+            <h6 class="text-uppercase text-primary fw-semibold" data-i18n="home.skillsEyebrow">Offline productivity</h6>
+            <h2 class="heading" data-i18n="home.skillsTitle">Preloaded skills that work without downloads.</h2>
+          </div>
+          <div class="col-lg-7">
+            <div class="tag-cloud" aria-label="Preloaded skills">
+              <span>GitHub</span><span data-i18n="skill.email">Email</span><span data-i18n="skill.notes">Notes</span><span>PDF</span>
+              <span data-i18n="skill.drawing">AI drawing</span><span data-i18n="skill.weather">Weather</span><span data-i18n="skill.calendar">Calendar</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="section bg-footer">
+    <div class="container d-flex flex-column flex-md-row justify-content-between gap-3">
+      <strong>AIHub.bid</strong>
+      <a href="download.html" data-i18n="nav.download">Download</a>
+    </div>
+  </footer>
+
+  <button onclick="topFunction()" id="back-to-top" aria-label="Back to top"><i class="mdi mdi-arrow-up"></i></button>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/aihub-site.js"></script>
+</body>
+</html>
