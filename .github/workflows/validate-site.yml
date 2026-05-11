@@ -1,0 +1,68 @@
+name: index-pages Validate
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/validate-site.yml"
+      - "index.html"
+      - "download.html"
+      - "css/**"
+      - "js/**"
+      - "images/**"
+      - "fonts/**"
+      - "data/**"
+      - "CNAME"
+      - ".nojekyll"
+  pull_request:
+    paths:
+      - ".github/workflows/validate-site.yml"
+      - "index.html"
+      - "download.html"
+      - "css/**"
+      - "js/**"
+      - "images/**"
+      - "fonts/**"
+      - "data/**"
+      - "CNAME"
+      - ".nojekyll"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.22.2
+
+      - name: Validate static assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s CNAME
+          node --check js/aihub-site.js
+          node -e "JSON.parse(require('fs').readFileSync('data/boxclaw-downloads.json', 'utf8'))"
+
+      - name: HTTP smoke test
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m http.server 4173 >/tmp/index-pages-http.log 2>&1 &
+          server_pid=$!
+          trap 'kill "${server_pid}" >/dev/null 2>&1 || true' EXIT
+          sleep 2
+          curl -fsS http://127.0.0.1:4173/ >/dev/null
+          curl -fsS http://127.0.0.1:4173/download.html >/dev/null
+          curl -fsS http://127.0.0.1:4173/js/aihub-site.js >/dev/null
+          curl -fsS http://127.0.0.1:4173/css/aihub.css >/dev/null
+          curl -fsS http://127.0.0.1:4173/data/boxclaw-downloads.json >/dev/null
