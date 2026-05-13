@@ -30,13 +30,34 @@ const FALLBACK_DOWNLOADS = {
       size: null,
       sha256: null,
     },
+    {
+      id: "linux-x64",
+      label: "Linux x64 portable",
+      fileName: "BoxClaw-0.1.2-linux-x64-portable.zip",
+      url: "https://dl.aihub.bid/boxclaw/latest/BoxClaw-0.1.2-linux-x64-portable.zip",
+      size: null,
+      sha256: null,
+    },
   ],
 };
+
+const DOWNLOAD_URL_ORIGIN = "https://dl.aihub.bid";
+const DOWNLOAD_URL_PATH_PREFIX = "/boxclaw/latest/";
+
+const EXPECTED_DOWNLOAD_IDS = ["windows-x64", "macos-arm64", "macos-intel", "linux-x64"];
 
 const PLATFORM_LABEL_KEYS = {
   "windows-x64": "platform.windows",
   "macos-arm64": "platform.macosArm",
   "macos-intel": "platform.macosIntel",
+  "linux-x64": "platform.linux",
+};
+
+const PLATFORM_DESCRIPTION_KEYS = {
+  "windows-x64": "platformDesc.windows",
+  "macos-arm64": "platformDesc.macosArm",
+  "macos-intel": "platformDesc.macosIntel",
+  "linux-x64": "platformDesc.linux",
 };
 
 const MESSAGES = {
@@ -88,6 +109,11 @@ const MESSAGES = {
     "platform.windows": "Windows x64 portable",
     "platform.macosArm": "macOS ARM portable",
     "platform.macosIntel": "macOS Intel portable",
+    "platform.linux": "Linux x64 portable",
+    "platformDesc.windows": "For 64-bit Windows 10 and Windows 11.",
+    "platformDesc.macosArm": "For Apple Silicon Macs running macOS 13 or later.",
+    "platformDesc.macosIntel": "For Intel Macs running macOS 13 or later.",
+    "platformDesc.linux": "For 64-bit Ubuntu, Fedora and other mainstream Linux desktop or server distributions.",
   },
   "zh-CN": {
     "nav.home": "首页",
@@ -137,6 +163,11 @@ const MESSAGES = {
     "platform.windows": "Windows x64 便携版",
     "platform.macosArm": "macOS ARM 便携版",
     "platform.macosIntel": "macOS Intel 便携版",
+    "platform.linux": "Linux x64 便携版",
+    "platformDesc.windows": "适用于 64 位 Windows 10 和 Windows 11。",
+    "platformDesc.macosArm": "适用于 Apple Silicon 芯片 Mac，建议 macOS 13 或更新版本。",
+    "platformDesc.macosIntel": "适用于 Intel 芯片 Mac，建议 macOS 13 或更新版本。",
+    "platformDesc.linux": "适用于 64 位 Ubuntu、Fedora 及其他主流 Linux 桌面或服务器发行版。",
   },
   ja: {
     "nav.home": "ホーム",
@@ -186,6 +217,11 @@ const MESSAGES = {
     "platform.windows": "Windows x64 ポータブル",
     "platform.macosArm": "macOS ARM ポータブル",
     "platform.macosIntel": "macOS Intel ポータブル",
+    "platform.linux": "Linux x64 ポータブル",
+    "platformDesc.windows": "64 bit 版 Windows 10 と Windows 11 向けです。",
+    "platformDesc.macosArm": "Apple Silicon Mac、macOS 13 以降向けです。",
+    "platformDesc.macosIntel": "Intel Mac、macOS 13 以降向けです。",
+    "platformDesc.linux": "64 bit 版 Ubuntu、Fedora、その他主要な Linux デスクトップまたはサーバー向けです。",
   },
   ko: {
     "nav.home": "홈",
@@ -235,6 +271,11 @@ const MESSAGES = {
     "platform.windows": "Windows x64 포터블",
     "platform.macosArm": "macOS ARM 포터블",
     "platform.macosIntel": "macOS Intel 포터블",
+    "platform.linux": "Linux x64 포터블",
+    "platformDesc.windows": "64비트 Windows 10 및 Windows 11용입니다.",
+    "platformDesc.macosArm": "Apple Silicon Mac, macOS 13 이상용입니다.",
+    "platformDesc.macosIntel": "Intel Mac, macOS 13 이상용입니다.",
+    "platformDesc.linux": "64비트 Ubuntu, Fedora 및 기타 주요 Linux 데스크톱 또는 서버 배포판용입니다.",
   },
   "hi-IN": {
     "nav.home": "होम",
@@ -284,6 +325,11 @@ const MESSAGES = {
     "platform.windows": "Windows x64 पोर्टेबल",
     "platform.macosArm": "macOS ARM पोर्टेबल",
     "platform.macosIntel": "macOS Intel पोर्टेबल",
+    "platform.linux": "Linux x64 पोर्टेबल",
+    "platformDesc.windows": "64-bit Windows 10 और Windows 11 के लिए।",
+    "platformDesc.macosArm": "Apple Silicon Mac और macOS 13 या नए version के लिए।",
+    "platformDesc.macosIntel": "Intel Mac और macOS 13 या नए version के लिए।",
+    "platformDesc.linux": "64-bit Ubuntu, Fedora और अन्य mainstream Linux desktop या server distributions के लिए।",
   },
 };
 
@@ -345,11 +391,46 @@ function createTextElement(tagName, className, text) {
   return element;
 }
 
+function isValidSha256(value) {
+  return typeof value === "string" && /^[a-f0-9]{64}$/i.test(value);
+}
+
+function getSafeDownloadUrl(value) {
+  try {
+    const url = new URL(value);
+    if (url.origin === DOWNLOAD_URL_ORIGIN && url.pathname.startsWith(DOWNLOAD_URL_PATH_PREFIX)) {
+      return url.href;
+    }
+  } catch {
+    return "";
+  }
+  return "";
+}
+
+function normalizeDownloads(payload) {
+  const fallbackById = new Map(FALLBACK_DOWNLOADS.downloads.map((item) => [item.id, item]));
+  const sourceDownloads = Array.isArray(payload?.downloads) ? payload.downloads : [];
+  const sourceById = new Map(
+    sourceDownloads
+      .filter((item) => typeof item?.id === "string")
+      .map((item) => [item.id, item]),
+  );
+  const normalized = EXPECTED_DOWNLOAD_IDS
+    .map((id) => sourceById.get(id) || fallbackById.get(id))
+    .filter(Boolean);
+  for (const item of sourceDownloads) {
+    if (typeof item?.id === "string" && !EXPECTED_DOWNLOAD_IDS.includes(item.id)) {
+      normalized.push(item);
+    }
+  }
+  return normalized;
+}
+
 function renderDownloads(payload) {
   const list = document.getElementById("download-list");
   if (!list) return;
   list.textContent = "";
-  const downloads = Array.isArray(payload?.downloads) ? payload.downloads : FALLBACK_DOWNLOADS.downloads;
+  const downloads = normalizeDownloads(payload);
   for (const item of downloads) {
     const article = document.createElement("article");
     article.className = "download-item";
@@ -357,10 +438,15 @@ function renderDownloads(payload) {
     const meta = document.createElement("div");
     meta.className = "download-meta";
     const labelKey = PLATFORM_LABEL_KEYS[item.id];
+    const descriptionKey = PLATFORM_DESCRIPTION_KEYS[item.id];
     meta.append(createTextElement("h3", "", labelKey ? translate(labelKey) : item.label || item.id));
+    if (descriptionKey) {
+      meta.append(createTextElement("p", "platform-note", translate(descriptionKey)));
+    }
     meta.append(createTextElement("p", "", `${translate("download.file")}: ${item.fileName || ""}`));
     meta.append(createTextElement("p", "", `${translate("download.size")}: ${formatBytes(item.size)}`));
-    const checksum = createTextElement("code", "checksum", item.sha256 || translate("download.pending"));
+    const hasChecksum = isValidSha256(item.sha256);
+    const checksum = createTextElement("code", "checksum", hasChecksum ? item.sha256 : translate("download.pending"));
     meta.append(createTextElement("p", "", translate("download.sha")));
     meta.append(checksum);
 
@@ -368,8 +454,12 @@ function renderDownloads(payload) {
     actions.className = "download-actions";
     const downloadLink = document.createElement("a");
     downloadLink.className = "download-button";
-    downloadLink.href = item.url;
+    const safeUrl = getSafeDownloadUrl(item.url);
+    downloadLink.href = safeUrl || "#";
     downloadLink.rel = "noopener";
+    if (!safeUrl) {
+      downloadLink.setAttribute("aria-disabled", "true");
+    }
     downloadLink.textContent = translate("nav.download");
     actions.append(downloadLink);
 
@@ -377,9 +467,9 @@ function renderDownloads(payload) {
     copyButton.className = "copy-button";
     copyButton.type = "button";
     copyButton.textContent = translate("download.copy");
-    copyButton.disabled = !item.sha256;
+    copyButton.disabled = !hasChecksum;
     copyButton.addEventListener("click", async () => {
-      if (!item.sha256) return;
+      if (!hasChecksum) return;
       await navigator.clipboard.writeText(item.sha256);
       copyButton.textContent = translate("download.copied");
       setTimeout(() => {
@@ -394,7 +484,7 @@ function renderDownloads(payload) {
 
   const metadata = document.getElementById("download-metadata");
   if (metadata) {
-    const hasHashes = downloads.every((item) => typeof item.sha256 === "string" && item.sha256.length === 64);
+    const hasHashes = downloads.every((item) => isValidSha256(item.sha256));
     metadata.textContent = hasHashes ? translate("download.updated") : translate("download.seed");
   }
 }

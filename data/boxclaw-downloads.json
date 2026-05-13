@@ -30,6 +30,14 @@
       "url": "https://dl.aihub.bid/boxclaw/latest/BoxClaw-0.1.2-macos-intel-portable.zip",
       "size": null,
       "sha256": null
+    },
+    {
+      "id": "linux-x64",
+      "label": "Linux x64 portable",
+      "fileName": "BoxClaw-0.1.2-linux-x64-portable.zip",
+      "url": "https://dl.aihub.bid/boxclaw/latest/BoxClaw-0.1.2-linux-x64-portable.zip",
+      "size": null,
+      "sha256": null
     }
   ]
 }
