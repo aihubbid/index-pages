@@ -450,6 +450,11 @@ a {
   color: var(--ink);
 }
 
+.download-button[aria-disabled="true"] {
+  opacity: 0.62;
+  pointer-events: none;
+}
+
 .product-visual {
   position: relative;
   min-height: 430px;
@@ -618,6 +623,11 @@ a {
 .metadata-note {
   margin: 0;
   color: var(--muted);
+}
+
+.download-item .platform-note {
+  color: var(--ink);
+  font-weight: 700;
 }
 
 .provider-list,
