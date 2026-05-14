@@ -1,44 +1,44 @@
 {
   "schemaVersion": "boxclaw-downloads.v1",
   "product": "BoxClaw",
-  "releaseVersion": "0.1.5",
-  "publicReleaseVersion": "0.1.5",
+  "releaseVersion": "v2026.5.12",
+  "publicReleaseVersion": "2026.5.12",
   "openclawVersion": "2026.5.12",
   "nodeVersion": "22.22.2",
-  "gitHubRunId": "25881223795",
-  "createdAt": "2026-05-14T19:44:18.308Z",
+  "gitHubRunId": "25888922436",
+  "createdAt": "2026-05-14T22:28:20.248Z",
   "downloads": [
     {
       "id": "windows-x64",
       "label": "Windows x64 portable",
-      "fileName": "BoxClaw-0.1.5-25881223795-windows-x64-portable.zip",
-      "url": "https://dl.aihub.bid/boxclaw/latest/BoxClaw-0.1.5-25881223795-windows-x64-portable.zip",
-      "size": 166377884,
-      "sha256": "0725afd8b0649825d5584d3188177418164cf9a381ffbed60c07a7ade868fd9c"
+      "fileName": "BoxClaw-2026.5.12-25888922436-windows-x64-portable.zip",
+      "url": "https://dl.aihub.bid/boxclaw/latest/BoxClaw-2026.5.12-25888922436-windows-x64-portable.zip",
+      "size": 166374480,
+      "sha256": "a758d86c20c4f27aa863c28d38c9f3c9d4c5b4a842155c853c894eba8ce7e551"
     },
     {
       "id": "macos-arm64",
       "label": "macOS ARM portable",
-      "fileName": "BoxClaw-0.1.5-25874923350-macos-arm64-portable.zip",
-      "url": "https://dl.aihub.bid/boxclaw/latest/BoxClaw-0.1.5-25874923350-macos-arm64-portable.zip",
-      "size": 314154010,
-      "sha256": "c72bd1e012676072b4b33c34c17ed8e1b4dd9a1baa3d35c1d22194376fe947cc"
+      "fileName": "BoxClaw-2026.5.12-25888922436-macos-arm64-portable.zip",
+      "url": "https://dl.aihub.bid/boxclaw/latest/BoxClaw-2026.5.12-25888922436-macos-arm64-portable.zip",
+      "size": 312054597,
+      "sha256": "16ee6ff5a1e5f73b2589113637e475aaedcd3f7e7c1bdd3f3150f6ef308954a4"
     },
     {
       "id": "macos-intel",
       "label": "macOS Intel portable",
-      "fileName": "BoxClaw-0.1.5-25874923350-macos-intel-portable.zip",
-      "url": "https://dl.aihub.bid/boxclaw/latest/BoxClaw-0.1.5-25874923350-macos-intel-portable.zip",
-      "size": 316609561,
-      "sha256": "06b0f4952d632d46016ae9a308704f62c74e3db0e1712baefaab962262185dcf"
+      "fileName": "BoxClaw-2026.5.12-25888922436-macos-intel-portable.zip",
+      "url": "https://dl.aihub.bid/boxclaw/latest/BoxClaw-2026.5.12-25888922436-macos-intel-portable.zip",
+      "size": 314510267,
+      "sha256": "f25abe51c9cfd9cf320d537ce7fc2255775ac43d982fdc5cf7ad019277d041b0"
     },
     {
       "id": "linux-x64",
       "label": "Linux x64 portable",
-      "fileName": "BoxClaw-0.1.5-25874923350-linux-x64-portable.zip",
-      "url": "https://dl.aihub.bid/boxclaw/latest/BoxClaw-0.1.5-25874923350-linux-x64-portable.zip",
-      "size": 321023044,
-      "sha256": "1d7f15c3e9c8d26e8205c38ad921ed42616da68d1c3435e10dfacdf34f111520"
+      "fileName": "BoxClaw-2026.5.12-25888922436-linux-x64-portable.zip",
+      "url": "https://dl.aihub.bid/boxclaw/latest/BoxClaw-2026.5.12-25888922436-linux-x64-portable.zip",
+      "size": 318923688,
+      "sha256": "78b0e4a6f32610a0df0cd00173b280fd78217501ecaa9afc249ddf471a2c86ab"
     }
   ]
 }
