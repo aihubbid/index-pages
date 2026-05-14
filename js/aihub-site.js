@@ -60,6 +60,13 @@ const PLATFORM_DESCRIPTION_KEYS = {
   "linux-x64": "platformDesc.linux",
 };
 
+const PLATFORM_INSTRUCTION_KEYS = {
+  "windows-x64": ["download.use.windows"],
+  "macos-arm64": ["download.use.macos"],
+  "macos-intel": ["download.use.macos"],
+  "linux-x64": ["download.use.linux"],
+};
+
 const MESSAGES = {
   en: {
     "nav.home": "Home",
@@ -94,17 +101,23 @@ const MESSAGES = {
     "skill.calendar": "Calendar",
     "download.eyebrow": "Portable builds",
     "download.title": "Download BoxClaw",
-    "download.lede": "Choose the portable package for your platform. SHA-256 values are updated by the BoxClaw release workflow after each build.",
+    "download.lede": "Choose the portable package for your platform, then verify the SHA-256 value before running it.",
     "download.listTitle": "Latest downloads",
-    "download.loading": "Loading release metadata...",
-    "download.seed": "SHA-256 will appear after the next BoxClaw release updates this page.",
-    "download.updated": "Release metadata updated.",
+    "download.loading": "Loading download information...",
+    "download.seed": "SHA-256 is not complete yet. Wait for this page to show checksums before running a package.",
+    "download.updated": "Download information loaded.",
     "download.sha": "SHA-256",
     "download.size": "Size",
-    "download.pending": "Pending release metadata",
+    "download.pending": "Pending SHA-256",
     "download.copy": "Copy SHA-256",
     "download.copied": "Copied",
     "download.file": "File",
+    "download.verify": "After downloading, verify the archive SHA-256 matches this page. If it does not match, do not run it and report the issue to support@aihub.bid.",
+    "download.extract": "Extract the archive to a local hard drive or USB drive.",
+    "download.firstUse": "On first use, configure your AI provider key. After changing configuration, click Save Configuration before Start, otherwise changes may not take effect.",
+    "download.use.windows": "Windows: double-click Windows-Start.bat to start.",
+    "download.use.macos": "MacOS: double-click Mac-Start.command, or open Terminal in the folder and run: bash Mac-Start.command.",
+    "download.use.linux": "Linux: open Terminal in the folder and run: bash Linux-Start.command.",
     "download.backHome": "Home",
     "platform.windows": "Windows x64 portable",
     "platform.macosArm": "macOS ARM portable",
@@ -148,17 +161,23 @@ const MESSAGES = {
     "skill.calendar": "日程",
     "download.eyebrow": "便携版本",
     "download.title": "下载 BoxClaw",
-    "download.lede": "选择适合你平台的便携压缩包。每次 BoxClaw 打版后，发布 workflow 会更新 SHA-256。",
+    "download.lede": "选择适合你平台的便携压缩包，运行前务必核对 SHA-256。",
     "download.listTitle": "最新下载",
-    "download.loading": "正在加载发布元数据...",
-    "download.seed": "下次 BoxClaw Release 更新本页面后会显示 SHA-256。",
-    "download.updated": "发布元数据已更新。",
+    "download.loading": "正在加载下载信息...",
+    "download.seed": "SHA-256 暂未完整显示，下载前请等待本页面给出校验值。",
+    "download.updated": "当前下载信息已加载。",
     "download.sha": "SHA-256",
     "download.size": "大小",
-    "download.pending": "等待发布元数据",
+    "download.pending": "等待 SHA-256",
     "download.copy": "复制 SHA-256",
     "download.copied": "已复制",
     "download.file": "文件",
+    "download.verify": "下载后务必检查压缩包的 SHA-256 是否和本页面一致；如果不一致，不要运行，并将问题反馈给 support@aihub.bid。",
+    "download.extract": "下载后解压到本地硬盘或U盘。",
+    "download.firstUse": "首次使用需要配置 AI 供应商 key，后续无需再次配置。修改完配置后记得点击右上角的“保存配置”后再“开始使用”，否则修改过的配置可能不生效。",
+    "download.use.windows": "Windows：双击“Windows-Start.bat”，即可开始使用。",
+    "download.use.macos": "MacOS：双击“Mac-Start.command”或在终端界面进入该目录后输入：“bash Mac-Start.command”，即可开始使用。",
+    "download.use.linux": "Linux：在终端界面进入该目录后输入：“bash Linux-Start.command”，即可开始使用。",
     "download.backHome": "首页",
     "platform.windows": "Windows x64 便携版",
     "platform.macosArm": "macOS ARM 便携版",
@@ -202,17 +221,23 @@ const MESSAGES = {
     "skill.calendar": "カレンダー",
     "download.eyebrow": "ポータブルビルド",
     "download.title": "BoxClaw ダウンロード",
-    "download.lede": "利用する環境に合うポータブルパッケージを選択してください。SHA-256 は各リリース後に更新されます。",
+    "download.lede": "利用する環境に合うポータブルパッケージを選び、実行前に SHA-256 を確認してください。",
     "download.listTitle": "最新ダウンロード",
-    "download.loading": "リリース情報を読み込み中...",
-    "download.seed": "次回の BoxClaw リリース後に SHA-256 が表示されます。",
-    "download.updated": "リリース情報を更新しました。",
+    "download.loading": "ダウンロード情報を読み込み中...",
+    "download.seed": "SHA-256 がまだ揃っていません。実行前にこのページのチェックサムを確認してください。",
+    "download.updated": "ダウンロード情報を読み込みました。",
     "download.sha": "SHA-256",
     "download.size": "サイズ",
-    "download.pending": "リリース情報待ち",
+    "download.pending": "SHA-256 待ち",
     "download.copy": "SHA-256 をコピー",
     "download.copied": "コピーしました",
     "download.file": "ファイル",
+    "download.verify": "ダウンロード後、アーカイブの SHA-256 がこのページと一致するか確認してください。一致しない場合は実行せず、support@aihub.bid へ連絡してください。",
+    "download.extract": "アーカイブをローカルディスクまたは USB ドライブへ展開してください。",
+    "download.firstUse": "初回利用時は AI プロバイダーキーを設定してください。設定変更後は Start の前に Save Configuration をクリックしてください。そうしないと変更が反映されない場合があります。",
+    "download.use.windows": "Windows: Windows-Start.bat をダブルクリックして開始します。",
+    "download.use.macos": "MacOS: Mac-Start.command をダブルクリックするか、フォルダーで Terminal を開いて bash Mac-Start.command を実行します。",
+    "download.use.linux": "Linux: フォルダーで Terminal を開いて bash Linux-Start.command を実行します。",
     "download.backHome": "ホーム",
     "platform.windows": "Windows x64 ポータブル",
     "platform.macosArm": "macOS ARM ポータブル",
@@ -256,17 +281,23 @@ const MESSAGES = {
     "skill.calendar": "일정",
     "download.eyebrow": "포터블 빌드",
     "download.title": "BoxClaw 다운로드",
-    "download.lede": "플랫폼에 맞는 포터블 패키지를 선택하세요. SHA-256 값은 각 릴리스 후 업데이트됩니다.",
+    "download.lede": "플랫폼에 맞는 포터블 패키지를 선택하고 실행 전에 SHA-256을 확인하세요.",
     "download.listTitle": "최신 다운로드",
-    "download.loading": "릴리스 메타데이터 로딩 중...",
-    "download.seed": "다음 BoxClaw 릴리스 후 SHA-256이 표시됩니다.",
-    "download.updated": "릴리스 메타데이터가 업데이트되었습니다.",
+    "download.loading": "다운로드 정보 로딩 중...",
+    "download.seed": "SHA-256이 아직 완전하지 않습니다. 실행 전 이 페이지의 체크섬을 확인하세요.",
+    "download.updated": "다운로드 정보를 불러왔습니다.",
     "download.sha": "SHA-256",
     "download.size": "크기",
-    "download.pending": "릴리스 메타데이터 대기 중",
+    "download.pending": "SHA-256 대기 중",
     "download.copy": "SHA-256 복사",
     "download.copied": "복사됨",
     "download.file": "파일",
+    "download.verify": "다운로드 후 압축 파일의 SHA-256이 이 페이지와 일치하는지 확인하세요. 일치하지 않으면 실행하지 말고 support@aihub.bid 로 알려주세요.",
+    "download.extract": "압축 파일을 로컬 디스크 또는 USB 드라이브에 풀어주세요.",
+    "download.firstUse": "처음 사용할 때 AI 공급자 key를 설정하세요. 설정을 바꾼 뒤에는 Start 전에 Save Configuration을 눌러야 변경 사항이 적용됩니다.",
+    "download.use.windows": "Windows: Windows-Start.bat를 더블 클릭하면 시작됩니다.",
+    "download.use.macos": "MacOS: Mac-Start.command를 더블 클릭하거나 폴더에서 Terminal을 열고 bash Mac-Start.command를 실행하세요.",
+    "download.use.linux": "Linux: 폴더에서 Terminal을 열고 bash Linux-Start.command를 실행하세요.",
     "download.backHome": "홈",
     "platform.windows": "Windows x64 포터블",
     "platform.macosArm": "macOS ARM 포터블",
@@ -310,17 +341,23 @@ const MESSAGES = {
     "skill.calendar": "कैलेंडर",
     "download.eyebrow": "पोर्टेबल बिल्ड",
     "download.title": "BoxClaw डाउनलोड",
-    "download.lede": "अपने platform के लिए portable package चुनें। हर BoxClaw release के बाद SHA-256 values update होती हैं।",
+    "download.lede": "अपने platform के लिए portable package चुनें और चलाने से पहले SHA-256 verify करें।",
     "download.listTitle": "नवीनतम डाउनलोड",
-    "download.loading": "Release metadata लोड हो रहा है...",
-    "download.seed": "अगले BoxClaw release के बाद SHA-256 दिखाई देगा।",
-    "download.updated": "Release metadata updated.",
+    "download.loading": "Download information लोड हो रहा है...",
+    "download.seed": "SHA-256 अभी पूरा नहीं है। Package चलाने से पहले इस page पर checksum दिखने दें।",
+    "download.updated": "Download information loaded.",
     "download.sha": "SHA-256",
     "download.size": "आकार",
-    "download.pending": "Release metadata pending",
+    "download.pending": "SHA-256 pending",
     "download.copy": "SHA-256 copy करें",
     "download.copied": "Copied",
     "download.file": "फाइल",
+    "download.verify": "Download के बाद archive का SHA-256 इस page से मिलाएँ। अगर match नहीं करता, उसे न चलाएँ और support@aihub.bid पर report करें।",
+    "download.extract": "Archive को local hard drive या USB drive में extract करें।",
+    "download.firstUse": "पहली बार AI provider key configure करें। Configuration बदलने के बाद Start से पहले Save Configuration क्लिक करें, नहीं तो बदलाव लागू नहीं हो सकते।",
+    "download.use.windows": "Windows: शुरू करने के लिए Windows-Start.bat double-click करें।",
+    "download.use.macos": "MacOS: Mac-Start.command double-click करें, या folder में Terminal खोलकर bash Mac-Start.command चलाएँ।",
+    "download.use.linux": "Linux: folder में Terminal खोलकर bash Linux-Start.command चलाएँ।",
     "download.backHome": "होम",
     "platform.windows": "Windows x64 पोर्टेबल",
     "platform.macosArm": "macOS ARM पोर्टेबल",
@@ -449,15 +486,24 @@ function renderDownloads(payload) {
     const checksum = createTextElement("code", "checksum", hasChecksum ? item.sha256 : translate("download.pending"));
     meta.append(createTextElement("p", "", translate("download.sha")));
     meta.append(checksum);
+    const instructionKeys = PLATFORM_INSTRUCTION_KEYS[item.id] || [];
+    if (instructionKeys.length > 0) {
+      const instructions = document.createElement("ul");
+      instructions.className = "download-usage";
+      for (const key of instructionKeys) {
+        instructions.append(createTextElement("li", "", translate(key)));
+      }
+      meta.append(instructions);
+    }
 
     const actions = document.createElement("div");
     actions.className = "download-actions";
     const downloadLink = document.createElement("a");
     downloadLink.className = "download-button";
     const safeUrl = getSafeDownloadUrl(item.url);
-    downloadLink.href = safeUrl || "#";
+    downloadLink.href = safeUrl && hasChecksum ? safeUrl : "#";
     downloadLink.rel = "noopener";
-    if (!safeUrl) {
+    if (!safeUrl || !hasChecksum) {
       downloadLink.setAttribute("aria-disabled", "true");
     }
     downloadLink.textContent = translate("nav.download");
