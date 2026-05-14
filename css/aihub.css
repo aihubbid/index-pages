@@ -183,6 +183,21 @@
   padding-bottom: 22px;
 }
 
+.download-safety {
+  display: grid;
+  gap: 8px;
+  margin: 0 0 22px;
+  border-left: 4px solid var(--green);
+  background: var(--soft);
+  padding: 14px 16px;
+  color: var(--ink);
+}
+
+.download-safety p {
+  margin: 0;
+  line-height: 1.55;
+}
+
 .download-list {
   display: grid;
   gap: 16px;
@@ -215,6 +230,18 @@
   color: var(--ink);
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   font-size: 13px;
+}
+
+.download-usage {
+  display: grid;
+  gap: 6px;
+  padding-left: 18px;
+  margin: 4px 0 0;
+  color: var(--ink);
+}
+
+.download-usage li {
+  line-height: 1.5;
 }
 
 .download-actions {
