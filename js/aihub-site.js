@@ -1,50 +1,82 @@
 const SUPPORTED_LANGUAGES = ["en", "zh-CN", "ja", "ko", "hi-IN"];
+const TURNSTILE_SITE_KEY = "0x4AAAAAABA4DTLCUoU34LrO";
+const DOWNLOAD_REQUEST_URL = "https://dl.aihub.bid/to-download";
 
 const FALLBACK_DOWNLOADS = {
-  schemaVersion: "boxclaw-downloads.v1",
-  product: "BoxClaw",
-  releaseVersion: "0.1.2",
+  schemaVersion: "aihub-downloads.v1",
+  generatedAt: "2026-05-25T00:00:00.000Z",
   metadataStatus: "seed",
-  downloads: [
+  products: [
     {
-      id: "windows-x64",
-      label: "Windows x64 portable",
-      fileName: "BoxClaw-0.1.2-windows-x64-portable.zip",
-      url: "https://dl.aihub.bid/boxclaw/latest/BoxClaw-0.1.2-windows-x64-portable.zip",
-      size: null,
-      sha256: null,
+      id: "boxclaw",
+      name: "BoxClaw",
+      releaseVersion: "v0.1.3",
+      publicReleaseVersion: "0.1.3",
+      createdAt: "2026-05-13T22:07:11.247Z",
+      artifacts: [
+        {
+          id: "windows-x64",
+          artifactId: "windows-x64",
+          label: "Windows x64 portable",
+          fileName: "BoxClaw-0.1.3-25828881263-windows-x64-portable.zip",
+          size: 160874034,
+          sha256: "4a2b93a99a5a553b525e048bf5cb2437dc075384c60fc2ccaa9ff0e9226437e2",
+          platform: "windows-x64",
+          kind: "portable",
+        },
+        {
+          id: "macos-arm64",
+          artifactId: "macos-arm64",
+          label: "macOS ARM portable",
+          fileName: "BoxClaw-0.1.3-25828881263-macos-arm64-portable.zip",
+          size: 314254347,
+          sha256: "d4386d5324332cc5dace24149b7cd7e9e6953786ab022164af4e8dd029ab4016",
+          platform: "macos-arm64",
+          kind: "portable",
+        },
+        {
+          id: "macos-intel",
+          artifactId: "macos-intel",
+          label: "macOS Intel portable",
+          fileName: "BoxClaw-0.1.3-25828881263-macos-intel-portable.zip",
+          size: 316710087,
+          sha256: "861d3b8da79157bfc7814bc98422039a503e3f36b62fe1ac6c47d9a9361594ba",
+          platform: "macos-intel",
+          kind: "portable",
+        },
+        {
+          id: "linux-x64",
+          artifactId: "linux-x64",
+          label: "Linux x64 portable",
+          fileName: "BoxClaw-0.1.3-25828881263-linux-x64-portable.zip",
+          size: 321122156,
+          sha256: "7523257ca83ff8c970800849e25f92d5f5d2ebba49c7dbf01a8fad3ab88d7efb",
+          platform: "linux-x64",
+          kind: "portable",
+        },
+      ],
     },
     {
-      id: "macos-arm64",
-      label: "macOS ARM portable",
-      fileName: "BoxClaw-0.1.2-macos-arm64-portable.zip",
-      url: "https://dl.aihub.bid/boxclaw/latest/BoxClaw-0.1.2-macos-arm64-portable.zip",
-      size: null,
-      sha256: null,
-    },
-    {
-      id: "macos-intel",
-      label: "macOS Intel portable",
-      fileName: "BoxClaw-0.1.2-macos-intel-portable.zip",
-      url: "https://dl.aihub.bid/boxclaw/latest/BoxClaw-0.1.2-macos-intel-portable.zip",
-      size: null,
-      sha256: null,
-    },
-    {
-      id: "linux-x64",
-      label: "Linux x64 portable",
-      fileName: "BoxClaw-0.1.2-linux-x64-portable.zip",
-      url: "https://dl.aihub.bid/boxclaw/latest/BoxClaw-0.1.2-linux-x64-portable.zip",
-      size: null,
-      sha256: null,
+      id: "hermes-agent",
+      name: "Hermes Agent",
+      releaseVersion: "0.14.0",
+      createdAt: "2026-05-25T00:00:00.000Z",
+      artifacts: [
+        {
+          id: "linux-x64-browser-full",
+          artifactId: "linux-x64-browser-full",
+          label: "Linux x64 browser-full",
+          fileName: "hermes-agent-0.14.0-linux-x64-browser-full.tar.gz",
+          size: null,
+          sha256: null,
+          platform: "linux",
+          arch: "x64",
+          variant: "browser-full",
+        },
+      ],
     },
   ],
 };
-
-const DOWNLOAD_URL_ORIGIN = "https://dl.aihub.bid";
-const DOWNLOAD_URL_PATH_PREFIX = "/boxclaw/latest/";
-
-const EXPECTED_DOWNLOAD_IDS = ["windows-x64", "macos-arm64", "macos-intel", "linux-x64"];
 
 const PLATFORM_LABEL_KEYS = {
   "windows-x64": "platform.windows",
@@ -65,6 +97,7 @@ const PLATFORM_INSTRUCTION_KEYS = {
   "macos-arm64": ["download.use.macos"],
   "macos-intel": ["download.use.macos"],
   "linux-x64": ["download.use.linux"],
+  "linux-x64-browser-full": ["download.use.hermesLinux"],
 };
 
 const MESSAGES = {
@@ -100,12 +133,13 @@ const MESSAGES = {
     "skill.weather": "Weather",
     "skill.calendar": "Calendar",
     "download.eyebrow": "Portable builds",
-    "download.title": "Download BoxClaw",
-    "download.lede": "Choose the portable package for your platform, then verify the SHA-256 value before running it.",
+    "download.title": "Downloads",
+    "download.lede": "Choose a BoxClaw or Hermes Agent package, then verify the SHA-256 value before running it.",
     "download.listTitle": "Latest downloads",
     "download.loading": "Loading download information...",
     "download.seed": "SHA-256 is not complete yet. Wait for this page to show checksums before running a package.",
     "download.updated": "Download information loaded.",
+    "download.version": "Version",
     "download.sha": "SHA-256",
     "download.size": "Size",
     "download.pending": "Pending SHA-256",
@@ -118,6 +152,20 @@ const MESSAGES = {
     "download.use.windows": "Windows: double-click Windows-Start.bat to start.",
     "download.use.macos": "MacOS: double-click Mac-Start.command, or open Terminal in the folder and run: bash Mac-Start.command.",
     "download.use.linux": "Linux: open Terminal in the folder and run: bash Linux-Start.command.",
+    "download.use.hermesLinux": "Linux: extract the archive, enter the package directory, then run the included start script.",
+    "download.tokenTitle": "Download token",
+    "download.tokenPrompt": "Enter the download token for this product.",
+    "download.tokenLabel": "Token",
+    "download.tokenPlaceholder": "Paste download token",
+    "download.tokenCancel": "Cancel",
+    "download.tokenConfirm": "Confirm",
+    "download.tokenRequired": "Enter a download token.",
+    "download.turnstileUnavailable": "Turnstile is not ready. Reload the page and try again.",
+    "download.turnstileFailed": "Verification failed. Try again.",
+    "download.verifying": "Verifying...",
+    "download.requestFailed": "Unable to get the download address. Check the token and try again.",
+    "download.starting": "Download is starting.",
+    "download.unavailable": "Checksum pending",
     "download.backHome": "Home",
     "platform.windows": "Windows x64 portable",
     "platform.macosArm": "macOS ARM portable",
@@ -160,12 +208,13 @@ const MESSAGES = {
     "skill.weather": "天气",
     "skill.calendar": "日程",
     "download.eyebrow": "便携版本",
-    "download.title": "下载 BoxClaw",
-    "download.lede": "选择适合你平台的便携压缩包，运行前务必核对 SHA-256。",
+    "download.title": "下载",
+    "download.lede": "选择 BoxClaw 或 Hermes Agent 的安装包，运行前务必核对 SHA-256。",
     "download.listTitle": "最新下载",
     "download.loading": "正在加载下载信息...",
     "download.seed": "SHA-256 暂未完整显示，下载前请等待本页面给出校验值。",
     "download.updated": "当前下载信息已加载。",
+    "download.version": "版本",
     "download.sha": "SHA-256",
     "download.size": "大小",
     "download.pending": "等待 SHA-256",
@@ -178,6 +227,20 @@ const MESSAGES = {
     "download.use.windows": "Windows：双击“Windows-Start.bat”，即可开始使用。",
     "download.use.macos": "MacOS：双击“Mac-Start.command”或在终端界面进入该目录后输入：“bash Mac-Start.command”，即可开始使用。",
     "download.use.linux": "Linux：在终端界面进入该目录后输入：“bash Linux-Start.command”，即可开始使用。",
+    "download.use.hermesLinux": "Linux：解压后进入安装目录，运行随包提供的启动脚本。",
+    "download.tokenTitle": "下载 token",
+    "download.tokenPrompt": "请输入该产品对应的下载 token。",
+    "download.tokenLabel": "Token",
+    "download.tokenPlaceholder": "粘贴下载 token",
+    "download.tokenCancel": "取消",
+    "download.tokenConfirm": "确定",
+    "download.tokenRequired": "请输入下载 token。",
+    "download.turnstileUnavailable": "Turnstile 尚未加载完成，请刷新页面后重试。",
+    "download.turnstileFailed": "人机验证失败，请重试。",
+    "download.verifying": "正在验证...",
+    "download.requestFailed": "无法获取下载地址，请检查 token 后重试。",
+    "download.starting": "下载即将开始。",
+    "download.unavailable": "等待校验值",
     "download.backHome": "首页",
     "platform.windows": "Windows x64 便携版",
     "platform.macosArm": "macOS ARM 便携版",
@@ -396,6 +459,9 @@ function translate(key) {
 }
 
 let currentLanguage = getInitialLanguage();
+let activeDownloadProductId = "boxclaw";
+let pendingDownloadContext = null;
+let turnstileWidgetId = null;
 
 function applyLanguage(language) {
   currentLanguage = SUPPORTED_LANGUAGES.includes(language) ? language : "en";
@@ -404,9 +470,12 @@ function applyLanguage(language) {
   document.querySelectorAll("[data-i18n]").forEach((node) => {
     node.textContent = translate(node.dataset.i18n);
   });
+  document.querySelectorAll("[data-i18n-placeholder]").forEach((node) => {
+    node.setAttribute("placeholder", translate(node.dataset.i18nPlaceholder));
+  });
   const select = document.getElementById("language-select");
   if (select) select.value = currentLanguage;
-  renderDownloads(window.__boxclawDownloads || FALLBACK_DOWNLOADS);
+  renderDownloads(window.__aihubDownloads || FALLBACK_DOWNLOADS);
 }
 
 function formatBytes(size) {
@@ -432,43 +501,66 @@ function isValidSha256(value) {
   return typeof value === "string" && /^[a-f0-9]{64}$/i.test(value);
 }
 
-function getSafeDownloadUrl(value) {
-  try {
-    const url = new URL(value);
-    if (url.origin === DOWNLOAD_URL_ORIGIN && url.pathname.startsWith(DOWNLOAD_URL_PATH_PREFIX)) {
-      return url.href;
-    }
-  } catch {
-    return "";
+function normalizeProducts(payload) {
+  if (Array.isArray(payload?.products)) {
+    return payload.products
+      .filter((product) => typeof product?.id === "string" && Array.isArray(product.artifacts))
+      .map((product) => ({
+        ...product,
+        artifacts: product.artifacts
+          .filter((artifact) => typeof artifact?.fileName === "string")
+          .map((artifact) => ({ ...artifact, artifactId: artifact.artifactId || artifact.id })),
+      }));
   }
-  return "";
+  if (Array.isArray(payload?.downloads)) {
+    return [{
+      id: "boxclaw",
+      name: payload.product || "BoxClaw",
+      releaseVersion: payload.releaseVersion || null,
+      publicReleaseVersion: payload.publicReleaseVersion || null,
+      createdAt: payload.createdAt || null,
+      artifacts: payload.downloads.map((item) => ({ ...item, artifactId: item.artifactId || item.id, url: undefined })),
+    }];
+  }
+  return FALLBACK_DOWNLOADS.products;
 }
 
-function normalizeDownloads(payload) {
-  const fallbackById = new Map(FALLBACK_DOWNLOADS.downloads.map((item) => [item.id, item]));
-  const sourceDownloads = Array.isArray(payload?.downloads) ? payload.downloads : [];
-  const sourceById = new Map(
-    sourceDownloads
-      .filter((item) => typeof item?.id === "string")
-      .map((item) => [item.id, item]),
-  );
-  const normalized = EXPECTED_DOWNLOAD_IDS
-    .map((id) => sourceById.get(id) || fallbackById.get(id))
-    .filter(Boolean);
-  for (const item of sourceDownloads) {
-    if (typeof item?.id === "string" && !EXPECTED_DOWNLOAD_IDS.includes(item.id)) {
-      normalized.push(item);
-    }
+function productVersion(product) {
+  return product.publicReleaseVersion || product.releaseVersion || "";
+}
+
+function renderDownloadTabs(products) {
+  const tabs = document.getElementById("download-tabs");
+  if (!tabs) return;
+  tabs.textContent = "";
+  tabs.setAttribute("role", "tablist");
+  for (const product of products) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "download-tab";
+    button.setAttribute("role", "tab");
+    button.setAttribute("aria-selected", product.id === activeDownloadProductId ? "true" : "false");
+    button.textContent = product.name || product.id;
+    button.addEventListener("click", () => {
+      activeDownloadProductId = product.id;
+      renderDownloads(window.__aihubDownloads || FALLBACK_DOWNLOADS);
+    });
+    tabs.append(button);
   }
-  return normalized;
 }
 
 function renderDownloads(payload) {
   const list = document.getElementById("download-list");
   if (!list) return;
   list.textContent = "";
-  const downloads = normalizeDownloads(payload);
-  for (const item of downloads) {
+  const products = normalizeProducts(payload);
+  if (!products.some((product) => product.id === activeDownloadProductId)) {
+    activeDownloadProductId = products[0]?.id || "boxclaw";
+  }
+  renderDownloadTabs(products);
+  const product = products.find((item) => item.id === activeDownloadProductId) || products[0];
+  const artifacts = product?.artifacts || [];
+  for (const item of artifacts) {
     const article = document.createElement("article");
     article.className = "download-item";
 
@@ -477,6 +569,10 @@ function renderDownloads(payload) {
     const labelKey = PLATFORM_LABEL_KEYS[item.id];
     const descriptionKey = PLATFORM_DESCRIPTION_KEYS[item.id];
     meta.append(createTextElement("h3", "", labelKey ? translate(labelKey) : item.label || item.id));
+    const version = productVersion(product);
+    if (version) {
+      meta.append(createTextElement("p", "platform-note", `${translate("download.version")}: ${version}`));
+    }
     if (descriptionKey) {
       meta.append(createTextElement("p", "platform-note", translate(descriptionKey)));
     }
@@ -498,16 +594,20 @@ function renderDownloads(payload) {
 
     const actions = document.createElement("div");
     actions.className = "download-actions";
-    const downloadLink = document.createElement("a");
-    downloadLink.className = "download-button";
-    const safeUrl = getSafeDownloadUrl(item.url);
-    downloadLink.href = safeUrl && hasChecksum ? safeUrl : "#";
-    downloadLink.rel = "noopener";
-    if (!safeUrl || !hasChecksum) {
-      downloadLink.setAttribute("aria-disabled", "true");
+    const downloadButton = document.createElement("button");
+    downloadButton.className = "download-button";
+    downloadButton.type = "button";
+    downloadButton.disabled = !hasChecksum;
+    if (!hasChecksum) {
+      downloadButton.setAttribute("aria-disabled", "true");
+      downloadButton.title = translate("download.unavailable");
     }
-    downloadLink.textContent = translate("nav.download");
-    actions.append(downloadLink);
+    downloadButton.textContent = translate("nav.download");
+    downloadButton.addEventListener("click", () => {
+      if (!hasChecksum) return;
+      openDownloadModal(product, item);
+    });
+    actions.append(downloadButton);
 
     const copyButton = document.createElement("button");
     copyButton.className = "copy-button";
@@ -530,7 +630,7 @@ function renderDownloads(payload) {
 
   const metadata = document.getElementById("download-metadata");
   if (metadata) {
-    const hasHashes = downloads.every((item) => isValidSha256(item.sha256));
+    const hasHashes = artifacts.length > 0 && artifacts.every((item) => isValidSha256(item.sha256));
     metadata.textContent = hasHashes ? translate("download.updated") : translate("download.seed");
   }
 }
@@ -538,15 +638,169 @@ function renderDownloads(payload) {
 async function loadDownloads() {
   if (!document.getElementById("download-list")) return;
   try {
-    const response = await fetch("data/boxclaw-downloads.json", { cache: "no-store" });
+    const response = await fetch("data/downloads.json", { cache: "no-store" });
     if (!response.ok) throw new Error(`metadata ${response.status}`);
     const payload = await response.json();
-    window.__boxclawDownloads = payload;
+    window.__aihubDownloads = payload;
     renderDownloads(payload);
   } catch {
-    window.__boxclawDownloads = FALLBACK_DOWNLOADS;
+    window.__aihubDownloads = FALLBACK_DOWNLOADS;
     renderDownloads(FALLBACK_DOWNLOADS);
   }
+}
+
+function setModalStatus(message, kind = "") {
+  const status = document.getElementById("download-token-status");
+  if (!status) return;
+  status.textContent = message || "";
+  status.dataset.kind = kind;
+}
+
+function setConfirmBusy(isBusy) {
+  const confirmButton = document.getElementById("download-token-confirm");
+  const input = document.getElementById("download-token-input");
+  if (confirmButton) {
+    confirmButton.disabled = isBusy;
+    confirmButton.textContent = isBusy ? translate("download.verifying") : translate("download.tokenConfirm");
+  }
+  if (input) input.disabled = isBusy;
+}
+
+function openDownloadModal(product, artifact) {
+  pendingDownloadContext = { productId: product.id, artifact };
+  const modal = document.getElementById("download-token-modal");
+  const input = document.getElementById("download-token-input");
+  const file = document.getElementById("download-token-file");
+  if (!modal || !input) return;
+  if (file) file.textContent = artifact.fileName || "";
+  input.value = "";
+  input.disabled = false;
+  setModalStatus("", "");
+  setConfirmBusy(false);
+  modal.hidden = false;
+  modal.setAttribute("aria-hidden", "false");
+  input.focus();
+}
+
+function closeDownloadModal() {
+  const modal = document.getElementById("download-token-modal");
+  if (!modal) return;
+  modal.hidden = true;
+  modal.setAttribute("aria-hidden", "true");
+  pendingDownloadContext = null;
+  setConfirmBusy(false);
+}
+
+function executeTurnstile() {
+  return new Promise((resolve, reject) => {
+    if (!window.turnstile) {
+      reject(new Error(translate("download.turnstileUnavailable")));
+      return;
+    }
+    const container = document.getElementById("turnstile-container");
+    if (!container) {
+      reject(new Error(translate("download.turnstileUnavailable")));
+      return;
+    }
+    container.textContent = "";
+    const done = (callback) => (value) => {
+      try {
+        if (turnstileWidgetId !== null) {
+          window.turnstile.remove(turnstileWidgetId);
+          turnstileWidgetId = null;
+        }
+      } catch {}
+      callback(value);
+    };
+    try {
+      turnstileWidgetId = window.turnstile.render(container, {
+        sitekey: TURNSTILE_SITE_KEY,
+        size: "invisible",
+        callback: done(resolve),
+        "error-callback": done(() => reject(new Error(translate("download.turnstileFailed")))),
+        "expired-callback": done(() => reject(new Error(translate("download.turnstileFailed")))),
+      });
+      window.turnstile.execute(turnstileWidgetId);
+    } catch {
+      reject(new Error(translate("download.turnstileFailed")));
+    }
+  });
+}
+
+function safeDownloadResponseUrl(value, productId) {
+  try {
+    const url = new URL(value);
+    if (url.origin === "https://dl.aihub.bid" && url.pathname.startsWith(`/${productId}/latest/`)) {
+      return url.href;
+    }
+  } catch {}
+  return "";
+}
+
+async function requestDownloadUrl({ token, sha256, turnstileToken }) {
+  const response = await fetch(DOWNLOAD_REQUEST_URL, {
+    method: "POST",
+    headers: { "content-type": "application/json", accept: "application/json" },
+    body: JSON.stringify({ token, sha256, turnstileToken }),
+  });
+  const payload = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    throw new Error(payload.message || translate("download.requestFailed"));
+  }
+  return payload;
+}
+
+function startBrowserDownload(url, fileName) {
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = fileName || "";
+  link.rel = "noopener";
+  document.body.append(link);
+  link.click();
+  link.remove();
+}
+
+async function handleDownloadConfirm() {
+  const input = document.getElementById("download-token-input");
+  const context = pendingDownloadContext;
+  const token = String(input?.value || "").trim();
+  if (!context || !context.artifact) return;
+  if (!token) {
+    setModalStatus(translate("download.tokenRequired"), "error");
+    input?.focus();
+    return;
+  }
+  setConfirmBusy(true);
+  setModalStatus(translate("download.verifying"), "progress");
+  try {
+    const turnstileToken = await executeTurnstile();
+    const payload = await requestDownloadUrl({
+      token,
+      sha256: context.artifact.sha256,
+      turnstileToken,
+    });
+    const safeUrl = safeDownloadResponseUrl(payload.url, context.productId);
+    if (!safeUrl) throw new Error(translate("download.requestFailed"));
+    setModalStatus(translate("download.starting"), "success");
+    startBrowserDownload(safeUrl, payload.fileName || context.artifact.fileName);
+    closeDownloadModal();
+  } catch (error) {
+    setModalStatus(error.message || translate("download.requestFailed"), "error");
+    setConfirmBusy(false);
+  }
+}
+
+function wireDownloadModal() {
+  document.getElementById("download-token-cancel")?.addEventListener("click", closeDownloadModal);
+  document.getElementById("download-token-cancel-secondary")?.addEventListener("click", closeDownloadModal);
+  document.getElementById("download-token-confirm")?.addEventListener("click", handleDownloadConfirm);
+  document.getElementById("download-token-modal")?.addEventListener("click", (event) => {
+    if (event.target?.id === "download-token-modal") closeDownloadModal();
+  });
+  document.getElementById("download-token-input")?.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") handleDownloadConfirm();
+    if (event.key === "Escape") closeDownloadModal();
+  });
 }
 
 document.getElementById("language-select")?.addEventListener("change", (event) => {
@@ -557,6 +811,7 @@ window.topFunction = function topFunction() {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
 };
+document.getElementById("back-to-top")?.addEventListener("click", window.topFunction);
 
 window.addEventListener("scroll", () => {
   const navbar = document.getElementById("navbar");
@@ -567,4 +822,5 @@ window.addEventListener("scroll", () => {
 });
 
 applyLanguage(currentLanguage);
+wireDownloadModal();
 loadDownloads();

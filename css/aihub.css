@@ -198,6 +198,29 @@
   line-height: 1.55;
 }
 
+.download-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 18px;
+}
+
+.download-tab {
+  min-height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+  color: var(--ink);
+  padding: 0 16px;
+  font-weight: 900;
+}
+
+.download-tab[aria-selected="true"] {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: #ffffff;
+}
+
 .download-list {
   display: grid;
   gap: 16px;
@@ -272,6 +295,107 @@
   background: #ffffff;
   border-color: var(--line);
   color: var(--ink);
+}
+
+.download-button:disabled,
+.copy-button:disabled {
+  opacity: 0.58;
+  cursor: not-allowed;
+}
+
+.download-modal[hidden] {
+  display: none;
+}
+
+.download-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1040;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(23, 33, 29, 0.46);
+}
+
+.download-modal-panel {
+  width: min(100%, 460px);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 22px;
+  box-shadow: var(--shadow);
+}
+
+.download-modal-head {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.download-modal-head h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.download-modal-head p,
+.download-modal-copy {
+  margin: 8px 0 0;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.modal-close {
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+  color: var(--ink);
+  font-size: 22px;
+  line-height: 1;
+}
+
+.download-token-label {
+  display: block;
+  margin: 18px 0 8px;
+  font-weight: 900;
+}
+
+.download-token-input {
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0 12px;
+  color: var(--ink);
+}
+
+.turnstile-container {
+  min-height: 1px;
+}
+
+.download-token-status {
+  min-height: 24px;
+  margin: 12px 0 0;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.download-token-status[data-kind="error"] {
+  color: #b42318;
+}
+
+.download-token-status[data-kind="success"] {
+  color: var(--green-deep);
+}
+
+.download-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 18px;
 }
 
 .bg-footer {

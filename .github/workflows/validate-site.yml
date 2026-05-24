@@ -51,7 +51,28 @@ jobs:
           set -euo pipefail
           test -s CNAME
           node --check js/aihub-site.js
-          node -e "JSON.parse(require('fs').readFileSync('data/boxclaw-downloads.json', 'utf8'))"
+          node - <<'NODE'
+          const fs = require('node:fs');
+          const path = require('node:path');
+          const downloads = JSON.parse(fs.readFileSync('data/downloads.json', 'utf8'));
+          if (downloads.schemaVersion !== 'aihub-downloads.v1') {
+            throw new Error('data/downloads.json schemaVersion must be aihub-downloads.v1');
+          }
+          if (!Array.isArray(downloads.products) || downloads.products.length === 0) {
+            throw new Error('data/downloads.json products must be a non-empty array');
+          }
+          function scan(value, label) {
+            if (!value || typeof value !== 'object') return;
+            if (Array.isArray(value)) return value.forEach((item, index) => scan(item, `${label}[${index}]`));
+            for (const [key, child] of Object.entries(value)) {
+              if (key === 'url') throw new Error(`${label} must not contain url`);
+              scan(child, `${label}.${key}`);
+            }
+          }
+          for (const file of fs.readdirSync('data').filter((entry) => entry.endsWith('.json'))) {
+            scan(JSON.parse(fs.readFileSync(path.join('data', file), 'utf8')), `data/${file}`);
+          }
+          NODE
 
       - name: HTTP smoke test
         shell: bash
@@ -65,4 +86,4 @@ jobs:
           curl -fsS http://127.0.0.1:4173/download.html >/dev/null
           curl -fsS http://127.0.0.1:4173/js/aihub-site.js >/dev/null
           curl -fsS http://127.0.0.1:4173/css/aihub.css >/dev/null
-          curl -fsS http://127.0.0.1:4173/data/boxclaw-downloads.json >/dev/null
+          curl -fsS http://127.0.0.1:4173/data/downloads.json >/dev/null
