@@ -5,8 +5,8 @@
   "publicReleaseVersion": "0.1.19",
   "openclawVersion": "2026.6.6",
   "nodeVersion": "26.3.0",
-  "gitHubRunId": "27577225876",
-  "createdAt": "2026-06-15T21:28:06.274Z",
+  "gitHubRunId": "27579391798",
+  "createdAt": "2026-06-15T22:10:42.376Z",
   "downloads": [
     {
       "id": "windows-x64",
@@ -35,10 +35,10 @@
     {
       "id": "linux-x64",
       "label": "Linux x64 portable",
-      "fileName": "BoxClaw-0.1.19-27577225876-linux-x64-portable.zip",
-      "url": "https://dl.aihub.bid/boxclaw/latest/BoxClaw-0.1.19-27577225876-linux-x64-portable.zip",
-      "size": 825825359,
-      "sha256": "dd5b540825357a4a4ba20db63f9e9a251d9ec412f0cf3a7bfdd1f94406ce79fb"
+      "fileName": "BoxClaw-0.1.19-27579391798-linux-x64-portable.zip",
+      "url": "https://dl.aihub.bid/boxclaw/latest/BoxClaw-0.1.19-27579391798-linux-x64-portable.zip",
+      "size": 825828100,
+      "sha256": "6b01d443268652f8319bae9f45c4a58ecbb8a4dd340bcd6fbd9023221dc26e89"
     }
   ]
 }
