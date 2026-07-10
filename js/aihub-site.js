@@ -146,9 +146,8 @@ const MESSAGES = {
     "download.copy": "Copy SHA-256",
     "download.copied": "Copied",
     "download.file": "File",
-    "download.verify": "After downloading, verify the archive SHA-256 matches this page. If it does not match, do not run it and report the issue to support@aihub.bid.",
-    "download.extract": "Extract the archive to a local hard drive or USB drive.",
-    "download.firstUse": "On first use, configure your AI provider key. After changing configuration, click Save Configuration before Start, otherwise changes may not take effect.",
+    "download.verify": "After downloading, verify that the archive SHA-256 matches this page before running.",
+    "download.empty": "No download contents available at the moment.",
     "download.use.windows": "Windows: double-click Windows-Start.bat to start.",
     "download.use.macos": "MacOS: double-click Mac-Start.command, or open Terminal in the folder and run: bash Mac-Start.command.",
     "download.use.linux": "Linux: open Terminal in the folder and run: bash Linux-Start.command.",
@@ -221,9 +220,8 @@ const MESSAGES = {
     "download.copy": "复制 SHA-256",
     "download.copied": "已复制",
     "download.file": "文件",
-    "download.verify": "下载后务必检查压缩包的 SHA-256 是否和本页面一致；如果不一致，不要运行，并将问题反馈给 support@aihub.bid。",
-    "download.extract": "下载后解压到本地硬盘或U盘。",
-    "download.firstUse": "首次使用需要配置 AI 供应商 key，后续无需再次配置。修改完配置后记得点击右上角的“保存配置”后再“开始使用”，否则修改过的配置可能不生效。",
+    "download.verify": "下载后运行前，请务必核对压缩包的 SHA-256 是否和本页面一致。",
+    "download.empty": "暂时无可下载内容。",
     "download.use.windows": "Windows：双击“Windows-Start.bat”，即可开始使用。",
     "download.use.macos": "MacOS：双击“Mac-Start.command”或在终端界面进入该目录后输入：“bash Mac-Start.command”，即可开始使用。",
     "download.use.linux": "Linux：在终端界面进入该目录后输入：“bash Linux-Start.command”，即可开始使用。",
@@ -295,9 +293,8 @@ const MESSAGES = {
     "download.copy": "SHA-256 をコピー",
     "download.copied": "コピーしました",
     "download.file": "ファイル",
-    "download.verify": "ダウンロード後、アーカイブの SHA-256 がこのページと一致するか確認してください。一致しない場合は実行せず、support@aihub.bid へ連絡してください。",
-    "download.extract": "アーカイブをローカルディスクまたは USB ドライブへ展開してください。",
-    "download.firstUse": "初回利用時は AI プロバイダーキーを設定してください。設定変更後は Start の前に Save Configuration をクリックしてください。そうしないと変更が反映されない場合があります。",
+    "download.verify": "ダウンロード後、実行する前に、アーカイブの SHA-256 がこのページと一致していることを確認してください。",
+    "download.empty": "現在、ダウンロード可能なコンテンツはありません。",
     "download.use.windows": "Windows: Windows-Start.bat をダブルクリックして開始します。",
     "download.use.macos": "MacOS: Mac-Start.command をダブルクリックするか、フォルダーで Terminal を開いて bash Mac-Start.command を実行します。",
     "download.use.linux": "Linux: フォルダーで Terminal を開いて bash Linux-Start.command を実行します。",
@@ -355,9 +352,8 @@ const MESSAGES = {
     "download.copy": "SHA-256 복사",
     "download.copied": "복사됨",
     "download.file": "파일",
-    "download.verify": "다운로드 후 압축 파일의 SHA-256이 이 페이지와 일치하는지 확인하세요. 일치하지 않으면 실행하지 말고 support@aihub.bid 로 알려주세요.",
-    "download.extract": "압축 파일을 로컬 디스크 또는 USB 드라이브에 풀어주세요.",
-    "download.firstUse": "처음 사용할 때 AI 공급자 key를 설정하세요. 설정을 바꾼 뒤에는 Start 전에 Save Configuration을 눌러야 변경 사항이 적용됩니다.",
+    "download.verify": "다운로드 후 실행하기 전에 압축 파일의 SHA-256이 이 페이지와 일치하는지 확인하십시오.",
+    "download.empty": "현재 다운로드 가능한 콘텐츠가 없습니다.",
     "download.use.windows": "Windows: Windows-Start.bat를 더블 클릭하면 시작됩니다.",
     "download.use.macos": "MacOS: Mac-Start.command를 더블 클릭하거나 폴더에서 Terminal을 열고 bash Mac-Start.command를 실행하세요.",
     "download.use.linux": "Linux: 폴더에서 Terminal을 열고 bash Linux-Start.command를 실행하세요.",
@@ -415,9 +411,8 @@ const MESSAGES = {
     "download.copy": "SHA-256 copy करें",
     "download.copied": "Copied",
     "download.file": "फाइल",
-    "download.verify": "Download के बाद archive का SHA-256 इस page से मिलाएँ। अगर match नहीं करता, उसे न चलाएँ और support@aihub.bid पर report करें।",
-    "download.extract": "Archive को local hard drive या USB drive में extract करें।",
-    "download.firstUse": "पहली बार AI provider key configure करें। Configuration बदलने के बाद Start से पहले Save Configuration क्लिक करें, नहीं तो बदलाव लागू नहीं हो सकते।",
+    "download.verify": "डाउनलोड करने के बाद, चलाने से पहले सत्यापित करें कि संग्रह SHA-256 इस पृष्ठ से मेल खाता है।",
+    "download.empty": "फिलहाल कोई डाउनलोड सामग्री उपलब्ध नहीं है।",
     "download.use.windows": "Windows: शुरू करने के लिए Windows-Start.bat double-click करें।",
     "download.use.macos": "MacOS: Mac-Start.command double-click करें, या folder में Terminal खोलकर bash Mac-Start.command चलाएँ।",
     "download.use.linux": "Linux: folder में Terminal खोलकर bash Linux-Start.command चलाएँ।",
@@ -468,10 +463,18 @@ function applyLanguage(language) {
   localStorage.setItem("aihub-language", currentLanguage);
   document.documentElement.lang = currentLanguage;
   document.querySelectorAll("[data-i18n]").forEach((node) => {
-    node.textContent = translate(node.dataset.i18n);
+    const key = node.dataset.i18n;
+    const translation = translate(key);
+    if (translation !== key) {
+      node.textContent = translation;
+    }
   });
   document.querySelectorAll("[data-i18n-placeholder]").forEach((node) => {
-    node.setAttribute("placeholder", translate(node.dataset.i18nPlaceholder));
+    const key = node.getAttribute("data-i18n-placeholder");
+    const translation = translate(key);
+    if (translation !== key) {
+      node.setAttribute("placeholder", translation);
+    }
   });
   const select = document.getElementById("language-select");
   if (select) select.value = currentLanguage;
@@ -553,7 +556,25 @@ function renderDownloads(payload) {
   const list = document.getElementById("download-list");
   if (!list) return;
   list.textContent = "";
-  const products = normalizeProducts(payload);
+  const allProducts = normalizeProducts(payload);
+  const products = allProducts.filter((product) => Array.isArray(product.artifacts) && product.artifacts.length > 0);
+  
+  if (products.length === 0) {
+    const tabs = document.getElementById("download-tabs");
+    if (tabs) tabs.textContent = "";
+    const metadata = document.getElementById("download-metadata");
+    if (metadata) metadata.textContent = "";
+    
+    const emptyState = document.createElement("div");
+    emptyState.className = "download-empty-state";
+    const p = document.createElement("p");
+    p.dataset.i18n = "download.empty";
+    p.textContent = translate("download.empty");
+    emptyState.append(p);
+    list.append(emptyState);
+    return;
+  }
+  
   if (!products.some((product) => product.id === activeDownloadProductId)) {
     activeDownloadProductId = products[0]?.id || "boxclaw";
   }
