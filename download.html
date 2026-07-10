@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
-  <meta name="description" content="Download BoxClaw portable builds and verify release SHA-256 checksums.">
-  <title>Download BoxClaw - AIHub.bid</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://dl.aihub.bid https://challenges.cloudflare.com; img-src 'self' data:; style-src 'self'; script-src 'self' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+  <meta name="description" content="Download BoxClaw and Hermes Agent packages, then verify release SHA-256 checksums.">
+  <title>Downloads - AIHub.bid</title>
   <link rel="shortcut icon" href="images/favicon.ico">
   <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
   <link rel="stylesheet" href="css/materialdesignicons.min.css" type="text/css">
@@ -49,7 +49,7 @@
           <div class="col-lg-8">
             <h6 class="text-uppercase text-primary fw-semibold" data-i18n="download.eyebrow">Portable builds</h6>
             <h1 data-i18n="download.title">Download BoxClaw</h1>
-            <p class="text-muted fs-18 mt-4" data-i18n="download.lede">Choose the portable package for your platform. SHA-256 values are updated by the BoxClaw release workflow after each build.</p>
+            <p class="text-muted fs-18 mt-4" data-i18n="download.lede">Choose the portable package for your platform, then verify the SHA-256 value before running it.</p>
           </div>
         </div>
       </div>
@@ -59,7 +59,13 @@
       <div class="container">
         <div class="download-toolbar">
           <h2 id="download-list-title" class="heading" data-i18n="download.listTitle">Latest downloads</h2>
-          <p id="download-metadata" class="text-muted" data-i18n="download.loading">Loading release metadata...</p>
+          <p id="download-metadata" class="text-muted" data-i18n="download.loading">Loading download information...</p>
+        </div>
+        <div id="download-tabs" class="download-tabs" aria-label="Download products"></div>
+        <div class="download-safety" aria-label="Download safety notes">
+          <p data-i18n="download.verify">After downloading, verify the archive SHA-256 matches this page. If it does not match, do not run it and report the issue to support@aihub.bid.</p>
+          <p data-i18n="download.extract">Extract the archive to a local hard drive or USB drive.</p>
+          <p data-i18n="download.firstUse">On first use, configure your AI provider key. After changing configuration, click Save Configuration before Start, otherwise changes may not take effect.</p>
         </div>
         <div id="download-list" class="download-list" aria-live="polite"></div>
       </div>
@@ -73,8 +79,30 @@
     </div>
   </footer>
 
-  <button onclick="topFunction()" id="back-to-top" aria-label="Back to top"><i class="mdi mdi-arrow-up"></i></button>
+  <div id="download-token-modal" class="download-modal" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="download-token-title">
+    <div class="download-modal-panel">
+      <div class="download-modal-head">
+        <div>
+          <h2 id="download-token-title" data-i18n="download.tokenTitle">Download token</h2>
+          <p id="download-token-file"></p>
+        </div>
+        <button id="download-token-cancel" class="modal-close" type="button" aria-label="Close">×</button>
+      </div>
+      <p class="download-modal-copy" data-i18n="download.tokenPrompt">Enter the download token for this product.</p>
+      <label class="download-token-label" for="download-token-input" data-i18n="download.tokenLabel">Token</label>
+      <input id="download-token-input" class="download-token-input" type="password" autocomplete="off" spellcheck="false" data-i18n-placeholder="download.tokenPlaceholder" placeholder="Paste download token">
+      <div id="turnstile-container" class="turnstile-container"></div>
+      <p id="download-token-status" class="download-token-status" aria-live="polite"></p>
+      <div class="download-modal-actions">
+        <button id="download-token-cancel-secondary" class="copy-button" type="button" data-i18n="download.tokenCancel">Cancel</button>
+        <button id="download-token-confirm" class="download-button" type="button" data-i18n="download.tokenConfirm">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <button id="back-to-top" aria-label="Back to top"><i class="mdi mdi-arrow-up"></i></button>
   <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
   <script src="js/aihub-site.js"></script>
 </body>
 </html>
