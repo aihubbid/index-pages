@@ -506,14 +506,16 @@ function isValidSha256(value) {
 
 function normalizeProducts(payload) {
   if (Array.isArray(payload?.products)) {
-    return payload.products
+    const products = payload.products
       .filter((product) => typeof product?.id === "string" && Array.isArray(product.artifacts))
       .map((product) => ({
         ...product,
         artifacts: product.artifacts
-          .filter((artifact) => typeof artifact?.fileName === "string")
+          .filter((artifact) => typeof artifact?.fileName === "string" || typeof artifact?.displayFileName === "string")
           .map((artifact) => ({ ...artifact, artifactId: artifact.artifactId || artifact.id })),
-      }));
+      }))
+      .filter((product) => product.artifacts.length > 0);
+    return products.length > 0 ? products : FALLBACK_DOWNLOADS.products;
   }
   if (Array.isArray(payload?.downloads)) {
     return [{
@@ -597,7 +599,8 @@ function renderDownloads(payload) {
     if (descriptionKey) {
       meta.append(createTextElement("p", "platform-note", translate(descriptionKey)));
     }
-    meta.append(createTextElement("p", "", `${translate("download.file")}: ${item.fileName || ""}`));
+    const displayFileName = item.displayFileName || item.fileName || "";
+    meta.append(createTextElement("p", "", `${translate("download.file")}: ${displayFileName}`));
     meta.append(createTextElement("p", "", `${translate("download.size")}: ${formatBytes(item.size)}`));
     const hasChecksum = isValidSha256(item.sha256);
     const checksum = createTextElement("code", "checksum", hasChecksum ? item.sha256 : translate("download.pending"));
@@ -693,7 +696,7 @@ function openDownloadModal(product, artifact) {
   const input = document.getElementById("download-token-input");
   const file = document.getElementById("download-token-file");
   if (!modal || !input) return;
-  if (file) file.textContent = artifact.fileName || "";
+  if (file) file.textContent = artifact.displayFileName || artifact.fileName || "";
   input.value = "";
   input.disabled = false;
   setModalStatus("", "");
@@ -751,6 +754,7 @@ function executeTurnstile() {
 function safeDownloadResponseUrl(value, productId) {
   try {
     const url = new URL(value);
+    // 当前发布策略要求 BoxClaw 与 Hermes Agent 都物理放在同一个 S3 latest 前缀下。
     if (url.origin === "https://dl.aihub.bid" && url.pathname.startsWith("/boxclaw/latest/")) {
       return url.href;
     }
