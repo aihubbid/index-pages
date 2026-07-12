@@ -1,6 +1,6 @@
 {
   "schemaVersion": "aihub-downloads.v1",
-  "generatedAt": "2026-07-12T21:46:56.699Z",
+  "generatedAt": "2026-07-12T21:52:17.952Z",
   "products": [
     {
       "id": "boxclaw",
@@ -54,19 +54,19 @@
       "name": "Hermes Agent",
       "description": "Hermes Agent offline packages",
       "releaseVersion": "0.18.2",
-      "createdAt": "2026-07-12T21:42:36.066Z",
+      "createdAt": "2026-07-12T21:51:59.369Z",
       "artifacts": [
         {
-          "id": "linux-x64-browser-full",
-          "artifactId": "linux-x64-browser-full",
-          "label": "Linux x64 browser-full",
-          "displayFileName": "hermes-agent-0.18.2-linux-x64-browser-full.tar.gz",
-          "fileName": "859ccf32a18a8517b7e4588d61245263:39265ff276580c45a44e9c37d9544a63e6d3a7972ca77f4d94c43834d162d7244dfe45b1a1ad3442e108d66f01abfc4d5d8a9fc5297b67538858654c4d4a6635d80458da904b00e52739bc91bce9ab05",
-          "size": 671355536,
-          "sha256": "a74d81d13a9620eb698c7044ba0969ad4c054e60f08f3c40bb5c26ef8be326a3",
-          "platform": "linux",
-          "arch": "x64",
-          "variant": "browser-full",
+          "id": "macos-arm64-core",
+          "artifactId": "macos-arm64-core",
+          "label": "macOS arm64 core",
+          "displayFileName": "hermes-agent-0.18.2-macos-arm64-core.tar.gz",
+          "fileName": "50a1180d7da416f3d4682fccece2c2a2:19d897f2b23d4f5fc66fda332638deb9355a70af1936109deab4056b458a3d27c3d2c4b040790b36fe3c569a1db74bffb079b1b3f1624aa81fe00edf9ab87f76",
+          "size": 278512645,
+          "sha256": "1a4a900cee37120989b003fa900bb83f84b52fe80ee842b3ecc01bd071d2cc55",
+          "platform": "macos",
+          "arch": "arm64",
+          "variant": "core",
           "archive": "tar.gz"
         }
       ]
