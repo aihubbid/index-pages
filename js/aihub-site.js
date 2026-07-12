@@ -754,8 +754,8 @@ function executeTurnstile() {
 function safeDownloadResponseUrl(value, productId) {
   try {
     const url = new URL(value);
-    // 当前发布策略要求 BoxClaw 与 Hermes Agent 都物理放在同一个 S3 latest 前缀下。
-    if (url.origin === "https://dl.aihub.bid" && url.pathname.startsWith("/boxclaw/latest/")) {
+    // 当前 VPS RustFS 发布策略要求 BoxClaw 与 Hermes Agent 都物理放在同一个 latest 下载前缀下。
+    if (url.origin === "https://dl.aihub.bid" && url.pathname.startsWith("/aihubbid/latest/")) {
       return url.href;
     }
   } catch {}
