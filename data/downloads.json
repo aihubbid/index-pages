@@ -1,6 +1,6 @@
 {
   "schemaVersion": "aihub-downloads.v1",
-  "generatedAt": "2026-07-12T21:00:20.082Z",
+  "generatedAt": "2026-07-12T21:43:09.028Z",
   "products": [
     {
       "id": "boxclaw",
@@ -35,6 +35,28 @@
           "sha256": "5df1bb56a474015f48e20270cfa4b53276b29762fd2c673cc6df4beb405a7ca6",
           "platform": "linux-x64",
           "kind": "portable"
+        }
+      ]
+    },
+    {
+      "id": "hermes-agent",
+      "name": "Hermes Agent",
+      "description": "Hermes Agent offline packages",
+      "releaseVersion": "0.18.2",
+      "createdAt": "2026-07-12T21:42:36.066Z",
+      "artifacts": [
+        {
+          "id": "linux-x64-browser-full",
+          "artifactId": "linux-x64-browser-full",
+          "label": "Linux x64 browser-full",
+          "displayFileName": "hermes-agent-0.18.2-linux-x64-browser-full.tar.gz",
+          "fileName": "859ccf32a18a8517b7e4588d61245263:39265ff276580c45a44e9c37d9544a63e6d3a7972ca77f4d94c43834d162d7244dfe45b1a1ad3442e108d66f01abfc4d5d8a9fc5297b67538858654c4d4a6635d80458da904b00e52739bc91bce9ab05",
+          "size": 671355536,
+          "sha256": "a74d81d13a9620eb698c7044ba0969ad4c054e60f08f3c40bb5c26ef8be326a3",
+          "platform": "linux",
+          "arch": "x64",
+          "variant": "browser-full",
+          "archive": "tar.gz"
         }
       ]
     }
