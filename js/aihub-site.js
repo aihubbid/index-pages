@@ -739,7 +739,7 @@ function executeTurnstile() {
     try {
       turnstileWidgetId = window.turnstile.render(container, {
         sitekey: TURNSTILE_SITE_KEY,
-        size: "invisible",
+        size: "flexible",
         callback: done(resolve),
         "error-callback": done(() => reject(new Error(translate("download.turnstileFailed")))),
         "expired-callback": done(() => reject(new Error(translate("download.turnstileFailed")))),
