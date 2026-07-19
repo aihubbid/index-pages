@@ -744,7 +744,6 @@ function executeTurnstile() {
         "error-callback": done(() => reject(new Error(translate("download.turnstileFailed")))),
         "expired-callback": done(() => reject(new Error(translate("download.turnstileFailed")))),
       });
-      window.turnstile.execute(turnstileWidgetId);
     } catch {
       reject(new Error(translate("download.turnstileFailed")));
     }
