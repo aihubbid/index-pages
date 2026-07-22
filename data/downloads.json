@@ -1,6 +1,6 @@
 {
   "schemaVersion": "aihub-downloads.v1",
-  "generatedAt": "2026-07-19T14:12:21.865Z",
+  "generatedAt": "2026-07-22T08:27:27.674Z",
   "products": [
     {
       "id": "boxclaw",
@@ -31,17 +31,17 @@
       "id": "hermes-agent",
       "name": "Hermes Agent",
       "description": "Hermes Agent offline packages",
-      "releaseVersion": "0.18.2",
-      "createdAt": "2026-07-14T06:40:22.829Z",
+      "releaseVersion": "0.19.0",
+      "createdAt": "2026-07-22T08:26:31.011Z",
       "artifacts": [
         {
           "id": "windows-x64-core",
           "artifactId": "windows-x64-core",
           "label": "Windows x64 core",
-          "displayFileName": "hermes-agent-0.18.2-windows-x64-core.zip",
-          "fileName": "de938465632bc50da1c9f3a5ad2e3692:134159aea19ca7fe53bc3e2369b151e2fd7523cbacfbddb305988e8c7e4fbc023481e64af6c230f7f75cc190c2eee43493d3e245c55d1f3738de85f7ed67b97c",
-          "size": 232085527,
-          "sha256": "2e411c3b1002a9631a943d1314f2e15dff66aa3c7b4575f61d8b6eaebb5ca860",
+          "displayFileName": "hermes-agent-0.19.0-windows-x64-core.zip",
+          "fileName": "d1480fdc6a60efb2cf51dfd097e086e7:ac0232b29f78c1faee6a5c61e6c9ee5347455d70ef9beb8671c39875baf55c755231e7e085544b591b4134ef6326efa4f5db637922385ee87ab7dd61e4c13a4c",
+          "size": 234369294,
+          "sha256": "ae5eb992629ab6cf349128ecc6ba0a941b45e6c1d8d62445c91abf4b26dc5fef",
           "platform": "windows",
           "arch": "x64",
           "variant": "core",
